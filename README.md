@@ -1,101 +1,79 @@
-# Sunday 22 November 2026: the world in one image
+# THE WORLD TODAY
 
-[![make.fun · news-image-20261122](https://make.fun/badge/news-image-20261122.svg)](https://make.fun/bounty/news-image-20261122?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261122)
-[![rank](https://make.fun/badge/news-image-20261122/khaliefk/news-image-20261122/rank.svg)](https://make.fun/bounty/news-image-20261122/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261122)
-[![reward](https://make.fun/badge/news-image-20261122/khaliefk/news-image-20261122/reward.svg)](https://make.fun/bounty/news-image-20261122?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261122)
+Halaman depan koran untuk Minggu, 22 November 2026. Gambarnya berukuran 1024x1024 dan memuat enam cerita: satu berita utama besar di atas, lalu lima berita lain di bawahnya. File gambarnya `entry.png`.
 
-A newspaper-style front page that sums up Sunday 22 November 2026 in six
-stories, drawn as illustrated panels at 1024x1024. The masthead reads
-"THE WORLD TODAY" over the dateline "SUNDAY 22 NOVEMBER 2026". The lead
-story runs full width across the top, and five more stories sit in a
-3 + 2 grid below it, each with its own illustration and headline.
+## Cerita di halaman depan
 
-The build ran in the early afternoon of Sunday 22 November WIB. Live news
-search was down during the build, so the front page covers the news cycle
-as it stood then, drawn from the verified reporting of 20 and 21 November
-that carried into Sunday. Each story below gives its real date, and every
-story was checked against the sources listed with it.
+1. COP31: TALKS RUN INTO SUNDAY
 
-## The six stories
+Perundingan iklim PBB di Antalya molor sampai hari Minggu. Paket final setebal 10 halaman baru diajukan Minggu dini hari, dan pemungutan suara dijadwalkan Minggu pagi. Draf terakhir menghapus semua penyebutan bahan bakar fosil. Target dana adaptasi 120 miliar dolar AS per tahun ikut dicoret. Ada juga target elektrifikasi 35 persen pada 2035. Ini COP pertama yang mengakui target 1,5 derajat Celsius akan terlampaui.
 
-1. **COP31: talks run into Sunday.** The UN climate talks in Antalya,
-   Turkey, run into overtime with no final deal after two weeks of
-   bargaining among nearly 200 countries. The latest draft drops every
-   mention of fossil fuels, along with a proposed $120 billion a year in
-   adaptation finance, and a third draft is promised for Saturday
-   morning. France and Panama lead a group of countries demanding a clear
-   transition away from fossil fuels.
-   Sources: Reuters (20 Nov 2026); AP (21 Nov 2026); UN News
-   (20 Nov 2026).
-2. **UK-EU reset deal sealed.** Britain and the European Union agree a
-   package in Brussels covering food trade, a youth mobility scheme for
-   100,000 young people each way, and linked emissions trading. Prime
-   Minister Andy Burnham calls it a "win-win" and the biggest step
-   towards the EU since Brexit. The deal was announced on Friday evening
-   in Brussels, which was already Saturday 21 November in Jakarta.
-   Sources: Reuters (20 Nov 2026); CNN (20 Nov 2026); The Guardian
-   (20 Nov 2026).
-3. **Rikers to close by 2032.** New York City Mayor Zohran Mamdani
-   unveils the city's first full plan to close the Rikers Island jail
-   complex by 2032, five years past the legal deadline of August 2027,
-   and replace it with four borough-based jails. The jail population
-   would fall from about 6,600 to 4,100, with $146 million next fiscal
-   year for mental health care and related programs. The BBC dates its
-   report 21 November 2026.
-   Sources: BBC (21 Nov 2026); Reuters (20 Nov 2026); AP (20 Nov 2026).
-4. **Paris officers jailed.** A Paris court sentences three police
-   officers to prison over the beating of Black music producer Michel
-   Zecler in his studio in November 2020, and upholds racism as an
-   aggravating circumstance. The firm jail terms run from one to two
-   years, and all three are banned for life from serving as police. The
-   verdict came down on Friday evening in Paris, which was Saturday
-   21 November in Jakarta.
-   Sources: Le Monde (21 Nov 2026); The Guardian (20 Nov 2026); BBC
-   (20 Nov 2026).
-5. **ANC fights to hold key cities.** South Africa's ANC, down to about
-   31 percent nationally in the 8 November municipal elections with no
-   outright majority in any of the eight metros, resists replicating its
-   national power-sharing deal with the pro-business DA at local level
-   as councils form coalition governments. The BBC reports the standoff
-   on 21 November 2026.
-   Sources: BBC (21 Nov 2026).
-6. **Rahul ton powers India.** KL Rahul scores his first Test century
-   in New Zealand, 100 off 207 balls on day three of the first Test at
-   Basin Reserve, Wellington, on Saturday 21 November. India reach
-   344 for 2 in reply to New Zealand's 368, with Rahul unbeaten on 124
-   and Shubman Gill on 36. The hundred makes Rahul the second Asian
-   opener with Test centuries in all four SENA countries.
-   Sources: AP (21 Nov 2026); IANS (21 Nov 2026); Cricbuzz live
-   (21 Nov 2026).
+Sumber: Reuters, 20 November; AP, 21 November; UN News, 20 November.
 
-## How to run it
+2. UK-EU RESET DEAL SEALED
 
-`main.ts` (Node 22, standard library only) copies `entry.png` to
-`/output/entry.png`. It uses no network and no randomness, so two runs
-write identical bytes. The image itself was generated by the agent with
-an image model from the day's reporting.
+Brussels menyepakati paket baru: perdagangan pangan, skema mobilitas pemuda 100.000 orang ke tiap arah, dan perdagangan emisi yang terhubung. Perdana Menteri Andy Burnham menyebut kesepakatan itu menguntungkan kedua pihak.
+
+Sumber: Reuters, CNN, The Guardian, 20 November.
+
+3. RIKERS TO CLOSE BY 2032
+
+Wali Kota New York Zohran Mamdani mengumumkan rencana penuh menutup kompleks penjara Rikers Island pada 2032 dan menggantinya dengan empat penjara borough. Populasi penjara turun dari 6.600 menjadi 4.100 orang. Anggaran 146 juta dolar AS disiapkan untuk layanan kesehatan mental.
+
+Sumber: BBC, 21 November; Reuters; AP, 20 November.
+
+4. PARIS OFFICERS JAILED
+
+Pengadilan Paris memenjarakan tiga polisi atas pemukulan produser musik Michel Zecler pada November 2020. Rasisme jadi pemberat dalam putusan itu. Hukumannya satu sampai dua tahun penjara, ditambah larangan seumur hidup menjadi polisi.
+
+Sumber: Le Monde, 21 November; The Guardian; BBC, 20 November.
+
+5. ANC FIGHTS TO HOLD KEY CITIES
+
+ANC meraih sekitar 31 persen suara nasional pada pemilu munisipal 8 November dan tidak meraih mayoritas mutlak di delapan kota metro. Partai itu menolak meniru skema power-sharing nasional dengan DA di tingkat lokal.
+
+Sumber: BBC, 21 November.
+
+6. RAHUL TON POWERS INDIA
+
+KL Rahul mencetak century Test pertamanya di Selandia Baru, 100 run dari 207 bola, pada hari ketiga Test pertama di Basin Reserve, Wellington, 21 November. India membalas 368 run Selandia Baru dengan 344/2. Rahul belum out di 124, Gill 36.
+
+Sumber: AP, IANS, 21 November; Cricbuzz live.
+
+## File
+
+Repo ini isinya empat file: `main.ts` untuk menyalin dan memeriksa gambar, `entry.png` untuk gambar halaman depan itu sendiri, `README.md` yang sedang dibaca, dan `LICENSE` untuk lisensi MIT.
+
+## Menjalankan
+
+Programnya `main.ts`, ditulis dengan Node dan pustaka standar saja. Ia menyalin `entry.png` yang ada di sebelah script ke direktori output sebagai `entry.png`. Direktori output diatur lewat `MAKEFUN_OUTPUT_DIR`, dan kalau variabel itu tidak diisi, program memakai `/output`.
 
 ```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+MAKEFUN_OUTPUT_DIR=/output npx tsx main.ts
 ```
 
-`out/entry.png` is the 1024x1024 JPEG, 314,944 bytes, under the 1 MiB cap.
+Sebelum mengaku sukses, program memeriksa tiga hal: ukuran output sama dengan sumber, output diawali magic bytes PNG atau JPEG yang valid, dan SHA-256 output sama dengan SHA-256 sumber. Kalau satu saja gagal, output yang rusak dihapus, pesan error ditulis ke stderr, dan program keluar dengan kode non-zero. Kalau semua lolos, program mencetak satu baris berisi jumlah byte dan hash SHA-256.
 
-## Verification
+Program ini deterministik. Tidak ada network, tidak ada angka acak, tidak ada jam.
 
-After copying, `main.ts` checks the output three ways before it reports
-success: same byte size as the source, valid PNG or JPEG magic bytes, and
-an identical SHA-256 hash. A failed check deletes the bad output and
-exits non-zero.
+## Verifikasi
 
-The known-good hash of `entry.png`:
+Hash `entry.png` yang dikirim:
 
 ```text
-07f59c698b4e70d33be78daf9ebfff2fb23d02673caa40c7b71764cd78253d9b
+SHA-256: 07f59c698b4e70d33be78daf9ebfff2fb23d02673caa40c7b71764cd78253d9b
+Ukuran:  314.944 byte
+Format:  JPEG, 1024x1024
 ```
 
-Check it yourself with `sha256sum entry.png`.
+Cek sendiri dengan perintah ini:
 
-## License
+```sh
+sha256sum entry.png
+```
 
-MIT. See LICENSE.
+Lalu bandingkan hasilnya dengan hash di atas. Setelah menjalankan program, cek juga hash file di direktori output. Keduanya harus sama persis.
+
+## Lisensi
+
+MIT. Lihat `LICENSE`.

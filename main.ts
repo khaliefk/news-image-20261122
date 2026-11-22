@@ -1,95 +1,64 @@
-// news-image-20261122: one-image front page for Sunday 22 November 2026.
-//
-// The entry is a program that writes one image to /output/entry.png. The
-// image itself lives in this repository as entry.png (drawn by the agent
-// from the day's reporting), so this program only has to copy it into
-// place. No network, no randomness, no clock: two runs write the same
-// bytes every time.
-//
-// After copying, the program verifies the output three ways: same size as
-// the source, valid PNG or JPEG magic bytes, and an identical SHA-256 hash.
-// If any check fails it deletes the bad output, prints the problem to
-// stderr, and exits non-zero, so a broken copy can never pass as a good
-// entry.
-//
-// Run it outside the grader with:
-//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { createHash } from 'node:crypto';
-import { copyFileSync, mkdirSync, readFileSync, rmSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+const PNG_HEAD = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
+const JPEG_HEAD = [0xff, 0xd8, 0xff];
 
-function sha256(bytes: Buffer): string {
-  return createHash('sha256').update(bytes).digest('hex');
+function sha256Of(bytes: Buffer): string {
+  return createHash("sha256").update(bytes).digest("hex");
 }
 
-function fail(dest: string, message: string): never {
-  // Never leave a partial or wrong file behind for the grader to find.
-  try {
-    rmSync(dest, { force: true });
-  } catch {
-    // Removing the bad file is best effort; the error below is what matters.
+function looksLikeImage(bytes: Buffer): boolean {
+  const png = PNG_HEAD.every((b, i) => bytes[i] === b);
+  const jpeg = JPEG_HEAD.every((b, i) => bytes[i] === b);
+  return png || jpeg;
+}
+
+function fail(target: string, message: string): never {
+  if (existsSync(target)) {
+    rmSync(target, { force: true });
   }
   console.error(`error: ${message}`);
   process.exit(1);
 }
 
-function main(): void {
-  const outDir = process.env.MAKEFUN_OUTPUT_DIR?.trim() || '/output';
-  mkdirSync(outDir, { recursive: true });
+const here = dirname(fileURLToPath(import.meta.url));
+const sourcePath = join(here, "entry.png");
+const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+const targetPath = join(outDir, "entry.png");
 
-  const source = new URL('./entry.png', import.meta.url);
-  const dest = join(outDir, 'entry.png');
-  copyFileSync(source, dest);
-
-  const sourceSize = statSync(source).size;
-  const sourceBytes = readFileSync(source);
-  const destBytes = readFileSync(dest);
-
-  if (destBytes.length !== sourceSize) {
-    fail(
-      dest,
-      `entry.png copy failed: output is ${destBytes.length} bytes, expected ${sourceSize} bytes`,
-    );
-  }
-
-  const magic = destBytes.subarray(0, 4);
-  const isPng =
-    magic[0] === 0x89 &&
-    magic[1] === 0x50 &&
-    magic[2] === 0x4e &&
-    magic[3] === 0x47;
-  const isJpeg = magic[0] === 0xff && magic[1] === 0xd8 && magic[2] === 0xff;
-  if (!isPng && !isJpeg) {
-    fail(
-      dest,
-      'entry.png copy failed: output does not start with valid PNG or JPEG magic bytes',
-    );
-  }
-
-  // Byte-for-byte check. Size and magic bytes alone cannot catch a copy
-  // that has the right length and format but different content, so hash
-  // both files with SHA-256 and compare.
-  const sourceHash = sha256(sourceBytes);
-  const destHash = sha256(destBytes);
-  if (sourceHash !== destHash) {
-    fail(
-      dest,
-      `entry.png copy failed: output SHA-256 ${destHash} does not match source SHA-256 ${sourceHash}`,
-    );
-  }
-
-  console.log(
-    `ok: wrote ${dest} (${destBytes.length} bytes, sha256 ${destHash})`,
-  );
-}
-
-try {
-  main();
-} catch (err) {
-  // Anything unexpected (missing entry.png, unreadable output dir) is a
-  // failed run, not a crash dump: report it and exit non-zero.
-  const detail = err instanceof Error ? err.message : String(err);
-  console.error(`error: ${detail}`);
+if (!existsSync(sourcePath)) {
+  console.error(`error: source image not found at ${sourcePath}`);
   process.exit(1);
 }
+
+const sourceBytes = readFileSync(sourcePath);
+const sourceHash = sha256Of(sourceBytes);
+
+if (sourceBytes.length === 0) {
+  console.error("error: source image is empty");
+  process.exit(1);
+}
+if (!looksLikeImage(sourceBytes)) {
+  console.error("error: source image does not start with a valid PNG or JPEG signature");
+  process.exit(1);
+}
+
+mkdirSync(outDir, { recursive: true });
+copyFileSync(sourcePath, targetPath);
+
+const outBytes = readFileSync(targetPath);
+if (statSync(targetPath).size !== sourceBytes.length) {
+  fail(targetPath, `size mismatch: got ${outBytes.length} bytes, expected ${sourceBytes.length}`);
+}
+if (!looksLikeImage(outBytes)) {
+  fail(targetPath, "output does not start with a valid PNG or JPEG signature");
+}
+const outHash = sha256Of(outBytes);
+if (outHash !== sourceHash) {
+  fail(targetPath, `sha256 mismatch: got ${outHash}, expected ${sourceHash}`);
+}
+
+console.log(`${outBytes.length} bytes ${outHash}`);
